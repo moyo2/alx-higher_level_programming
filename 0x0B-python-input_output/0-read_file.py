@@ -1,13 +1,12 @@
 #!/usr/bin/python3
-"""A function that Reads a text file"""
+"""
+This program reads a text file in format UTF-8
+"""
 
 
 def read_file(filename=""):
-    """A function that reads a text file(UTF8) and prints to stdout
-
-    Args:
-        filename: File to be read
-    """
-    with open(filename, mode="r", encoding="utf-8") as f:
-        print(f.read(), end="")
+    """Open in a secure way the file, to be printed"""
+    with open(filename, encoding='utf-8') as fd:
+        for line in fd:
+            print(line, end="")
 
