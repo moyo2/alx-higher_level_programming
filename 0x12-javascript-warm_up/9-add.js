@@ -1,12 +1,7 @@
 #!/usr/bin/node
-
-/**
- Computes the sum of 2 numbers.
- */
 function add (a, b) {
-  return a + b;
+  const c = a + b;
+  console.log(c);
 }
 
-console.log(
-  add(Number.parseInt(process.argv[2]), Number.parseInt(process.argv[3]))
-);
+add(Number(process.argv[2]), Number(process.argv[3]));
