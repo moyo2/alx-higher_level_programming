@@ -1,8 +1,0 @@
-Lists can be utilized as stacks and queues by using the appropriate methods such as append() to add elements to the end and pop() to remove elements from the end (LIFO principle for stacks).
-List comprehensions provide a concise way to create lists in Python based on existing lists or iterables, using the syntax [expression for item in iterable] with optional conditions.
-Tuples are similar to lists but are immutable, created using parentheses, and are useful for grouping related data or returning multiple values from functions.
-Tuples are preferred over lists when the collection of elements should not be modified, while lists allow for dynamic changes to the elements they contain.
-A sequence in Python is an ordered collection of items, exemplified by both lists and tuples, and can be accessed through indexing, slicing, and iteration.
-Tuple packing involves creating a tuple by grouping multiple values together using parentheses, such as (1, 2, 3) creates a tuple with three elements.
-Sequence unpacking refers to the process of assigning individual values from a sequence, such as a tuple, to multiple variables simultaneously.
-The del statement is used in Python to delete objects, such as variables or elements from lists, by specifying their names or indices.
