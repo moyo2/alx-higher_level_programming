@@ -1,60 +1,72 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
 
 /**
- * is_palindrome - Check if a linked list is a palindrome
- * @head: The list
+ * reverse_listint - reverses a linked list
+ * @head: pointer to the first node in the list
  *
- * Return: 1 if it's a palindrome, 0 otherwise
+ * Return: pointer to the first node in the new list
  */
-int is_palindrome(listint_t **head)
-{
-	listint_t *a = *head;
-	listint_t *b = *head;
-
-	if (*head == NULL)
-		return (1);
-
-	while (b && b->next && b->next->next)
-	{
-		a = a->next;
-		b = b->next->next;
-	}
-
-	a = reverse_list(&a);
-	b = *head;
-	while (a && b)
-	{
-		if (a->n != b->n)
-			return (0);
-		a = a->next;
-		b = b->next;
-	}
-
-	return (1);
-}
-
-/**
- * reverse_list - Reverse a linked list
- * @head: The list
- *
- * Return: Pointer to the new head
- */
-listint_t *reverse_list(listint_t **head)
+void reverse_listint(listint_t **head)
 {
 	listint_t *prev = NULL;
+	listint_t *current = *head;
 	listint_t *next = NULL;
 
-	while (*head)
+	while (current)
 	{
-		next = (*head)->next;
-		(*head)->next = prev;
-		prev = *head;
-		*head = next;
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
 	}
 
 	*head = prev;
-	return (*head);
 }
 
+/**
+ * is_palindrome - checks if a linked list is a palindrome
+ * @head: double pointer to the linked list
+ *
+ * Return: 1 if it is, 0 if not
+ */
+int is_palindrome(listint_t **head)
+{
+	listint_t *slow = *head, *fast = *head, *temp = *head, *dup = NULL;
+
+	if (*head == NULL || (*head)->next == NULL)
+		return (1);
+
+	while (1)
+	{
+		fast = fast->next->next;
+		if (!fast)
+		{
+			dup = slow->next;
+			break;
+		}
+		if (!fast->next)
+		{
+			dup = slow->next->next;
+			break;
+		}
+		slow = slow->next;
+	}
+
+	reverse_listint(&dup);
+
+	while (dup && temp)
+	{
+		if (temp->n == dup->n)
+		{
+			dup = dup->next;
+			temp = temp->next;
+		}
+		else
+			return (0);
+	}
+
+	if (!dup)
+		return (1);
+
+	return (0);
+}
